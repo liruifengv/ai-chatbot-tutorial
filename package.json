@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@ai-sdk/deepseek": "^0.1.8",
+    "@ai-sdk/openai-compatible": "^0.1.8",
     "@astrojs/check": "^0.9.4",
     "@astrojs/cloudflare": "^12.1.0",
     "@astrojs/mdx": "^4.0.5",

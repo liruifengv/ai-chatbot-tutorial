@@ -11,6 +11,9 @@ importers:
       '@ai-sdk/deepseek':
         specifier: ^0.1.8
         version: 0.1.8(zod@3.24.1)
+      '@ai-sdk/openai-compatible':
+        specifier: ^0.1.8
+        version: 0.1.8(zod@3.24.1)
       '@astrojs/check':
         specifier: ^0.9.4
         version: 0.9.4(typescript@5.7.3)
