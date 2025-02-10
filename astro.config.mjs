@@ -77,7 +77,12 @@ export default defineConfig({
 		},
 	},
 	env: {
-		schema: {},
+		schema: {
+			SILICONFLOW_API_KEY: envField.string({
+				context: "server",
+				access: "secret",
+			}),
+		},
 	},
 	vite: {
 		resolve: {

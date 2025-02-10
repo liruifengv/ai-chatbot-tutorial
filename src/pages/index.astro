@@ -1,9 +1,12 @@
 ---
 import Layout from "@/layouts/Layout.astro"
+import Chat from "@/components/Chat"
 ---
 
 <Layout>
   <div class="text-dark dark:text-white">
     <h1>AI Chat App powered by Astro.</h1>
+
+    <Chat client:only />
   </div>
 </Layout>
