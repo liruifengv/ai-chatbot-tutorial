@@ -1,30 +1,15 @@
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import type { Attachment, ChatRequestOptions, CreateMessage, Message } from "ai"
+import type { ChatRequestOptions } from "ai"
 
-import {
-	useRef,
-	useEffect,
-	useState,
-	useCallback,
-	type Dispatch,
-	type SetStateAction,
-	type ChangeEvent,
-	memo,
-} from "react"
+import { useRef, useCallback } from "react"
 
 const ChatInput = ({
-	chatId,
 	input,
 	setInput,
 	isLoading,
 	stop,
-	attachments,
-	setAttachments,
-	messages,
-	setMessages,
-	append,
 	handleSubmit,
 	className,
 }: {
@@ -33,14 +18,6 @@ const ChatInput = ({
 	setInput: (value: string) => void
 	isLoading: boolean
 	stop: () => void
-	attachments: Array<Attachment>
-	setAttachments: Dispatch<SetStateAction<Array<Attachment>>>
-	messages: Array<Message>
-	setMessages: Dispatch<SetStateAction<Array<Message>>>
-	append: (
-		message: Message | CreateMessage,
-		chatRequestOptions?: ChatRequestOptions,
-	) => Promise<string | null | undefined>
 	handleSubmit: (
 		event?: {
 			preventDefault?: () => void
@@ -52,26 +29,15 @@ const ChatInput = ({
 	const textareaRef = useRef<HTMLTextAreaElement>(null)
 
 	const submitForm = useCallback(() => {
-		// window.history.replaceState({}, '', `/chat/${chatId}`);
-
-		handleSubmit(undefined, {
-			experimental_attachments: attachments,
-		})
-
-		setAttachments([])
-	}, [
-		attachments,
-		handleSubmit,
-		setAttachments,
-		// chatId,
-	])
+		handleSubmit()
+	}, [handleSubmit])
 
 	const handleInput = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
 		setInput(event.target.value)
 	}
 
 	return (
-		<div>
+		<div className="relative">
 			<Textarea
 				ref={textareaRef}
 				placeholder="Send a message..."
@@ -96,24 +62,29 @@ const ChatInput = ({
 					}
 				}}
 			/>
+
+			<div className="absolute bottom-0 right-0 p-2 w-fit flex flex-row justify-end">
+				{isLoading ? (
+					<StopButton stop={stop} />
+				) : (
+					<SendButton input={input} submitForm={submitForm} />
+				)}
+			</div>
 		</div>
 	)
 }
 
 function StopButton({
 	stop,
-	setMessages,
 }: {
 	stop: () => void
-	setMessages: Dispatch<SetStateAction<Array<Message>>>
 }) {
 	return (
 		<Button
-			className="rounded-full p-1.5 h-fit border dark:border-zinc-600"
+			className="rounded-md w-16 p-1.5 h-fit border bg-blue-500 text-white hover:bg-blue-600"
 			onClick={(event) => {
 				event.preventDefault()
 				stop()
-				// setMessages();
 			}}
 		>
 			停止
@@ -130,7 +101,7 @@ function SendButton({
 }) {
 	return (
 		<Button
-			className="rounded-full p-1.5 h-fit border dark:border-zinc-600"
+			className="rounded-md w-16 p-1.5 h-fit border bg-blue-500 text-white hover:bg-blue-600"
 			onClick={(event) => {
 				event.preventDefault()
 				submitForm()

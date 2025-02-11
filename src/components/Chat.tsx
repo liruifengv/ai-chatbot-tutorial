@@ -1,23 +1,9 @@
-"use client"
-import type { Attachment, Message } from "ai"
 import { useChat } from "@ai-sdk/react"
 import ChatInput from "./chat-input"
-import { useState } from "react"
 
 export default function Chat() {
-	const {
-		messages,
-		setMessages,
-		handleSubmit,
-		input,
-		setInput,
-		append,
-		isLoading,
-		stop,
-		reload,
-	} = useChat()
+	const { messages, handleSubmit, input, setInput, isLoading, stop } = useChat()
 
-	const [attachments, setAttachments] = useState<Array<Attachment>>([])
 	return (
 		<div className="flex flex-col w-full max-w-3xl mx-auto stretch text-dark dark:text-white min-h-[calc(100vh-10rem)] gap-4 justify-between">
 			<div>
@@ -40,11 +26,6 @@ export default function Chat() {
 				handleSubmit={handleSubmit}
 				isLoading={isLoading}
 				stop={stop}
-				attachments={attachments}
-				setAttachments={setAttachments}
-				messages={messages}
-				setMessages={setMessages}
-				append={append}
 			/>
 		</div>
 	)
