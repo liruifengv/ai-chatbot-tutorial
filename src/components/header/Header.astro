@@ -7,7 +7,7 @@ import ThemeToggle from "../ThemeToggle.astro"
 <header
   id="header"
   class:list={[
-    "absolute hidden md:block top-0 z-50 w-full dark:text-white dark:bg-gray-900 bg-white text-gray-800 bg-transparent shadow-none",
+    "fixed hidden md:block top-0 z-50 w-full dark:text-white dark:bg-[#010409] bg-white text-gray-800 bg-transparent shadow-none",
   ]}
 >
   <nav
@@ -22,7 +22,7 @@ import ThemeToggle from "../ThemeToggle.astro"
       data-home-link
     >
       <span class="sr-only">Logo</span>
-      <Icon name="logo" class="w-8 h-8" />
+      <!-- <Icon name="logo" class="w-8 h-8" /> -->
       <span class="ml-2 text-lg font-bold text-gray-800 dark:text-white">
         {siteInfo.name}
       </span>

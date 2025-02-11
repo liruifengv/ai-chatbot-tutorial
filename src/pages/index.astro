@@ -4,9 +4,9 @@ import Chat from "@/components/Chat"
 ---
 
 <Layout>
-  <div class="text-dark dark:text-white">
-    <h1>AI Chat App powered by Astro.</h1>
-
+  <main
+    class="min-h-[calc(100vh-4rem)] w-full bg-gray-50 dark:bg-[#09090B] py-12 px-4 sm:px-6 lg:px-8"
+  >
     <Chat client:only />
-  </div>
+  </main>
 </Layout>

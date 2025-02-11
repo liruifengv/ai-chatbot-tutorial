@@ -17,7 +17,7 @@ const { ...head } = Astro.props
 <html
   lang="zh-CN"
   class:list={[
-    "overflow-x-hidden break-words bg-gray-50 dark:bg-gray-900",
+    "overflow-x-hidden break-words bg-gray-50 dark:bg-[#0D1117]",
     Astro.props.class,
   ]}
 >
@@ -33,7 +33,7 @@ const { ...head } = Astro.props
     >
       <slot />
     </main>
-    <Footer />
+    <!-- <Footer /> -->
     <style>
       body::before {
         content: "";
