@@ -1,26 +1,41 @@
 {
   "name": "ai-chatbot-tutorial",
-  "version": "1.0.0",
-  "main": "index.js",
+  "description": "AI 开发实战教程",
+  "version": "0.0.1",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "dev:server": "node server/index.js",
+    "dev:client": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/liruifengv/ai-chatbot-tutorial.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "liruifengv",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/liruifengv/ai-chatbot-tutorial/issues"
   },
   "homepage": "https://github.com/liruifengv/ai-chatbot-tutorial#readme",
-  "description": "",
-  "devDependencies": {
-    "@types/node": "^22.15.30"
-  },
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^5.1.0"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.32.0",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.7.0",
+    "eslint": "^9.32.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.38.0",
+    "vite": "^7.0.6"
   }
 }

@@ -1,0 +1,28 @@
+{
+  "name": "ai-chatbot-tutorial-server",
+  "description": "AI 开发实战教程的服务端",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.ts",
+    "start": "node index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liruifengv/ai-chatbot-tutorial.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liruifengv/ai-chatbot-tutorial/issues"
+  },
+  "homepage": "https://github.com/liruifengv/ai-chatbot-tutorial#readme",
+  "devDependencies": {
+    "@types/node": "^22.15.30"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  }
+}

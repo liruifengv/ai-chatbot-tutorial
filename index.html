@@ -1,26 +1,13 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <title>SSE Demo</title>
-    </head>
-    <body>
-        <h1>来自服务器的实时消息</h1>
-        <div id="message"></div>
-
-        <script>
-            // 1. 创建 EventSource 实例，指向我们的后端端点
-            const eventSource = new EventSource("http://localhost:3000/events");
-
-            // 2. 监听 message 事件
-            eventSource.onmessage = (event) => {
-                // event.data 就是服务器发送过来的数据
-                document.getElementById("message").innerText += event.data;
-            };
-
-            // 3. (可选) 监听错误
-            eventSource.onerror = (err) => {
-                console.error("EventSource failed:", err);
-            };
-        </script>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
