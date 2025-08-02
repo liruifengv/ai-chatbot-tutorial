@@ -1,3 +1,5 @@
+<img src="./images/cover.jpg" alt="AI 开发实战教程" width="600"/>
+
 ## AI 开发实战教程
 
 这套AI开发实战教程，从零带你开发一个 ChatGPT 一样的 AI Chatbot。
