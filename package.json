@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:server": "node server/index.js",
+    "dev:server": "node server/index.ts",
     "dev:client": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/liruifengv/ai-chatbot-tutorial#readme",
   "dependencies": {
+    "eventsource-parser": "^3.0.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

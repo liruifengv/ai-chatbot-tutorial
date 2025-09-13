@@ -1,26 +1,22 @@
 import './App.css'
 import { useState } from 'react';
+import { createParser, type EventSourceMessage } from 'eventsource-parser'
 
 function App() {
 
   const [messages, setMessages] = useState<string>("");
 
-  function parseData(data: string) {
-    // 解析数据 data: 开头，换行符结尾
-    if (data.startsWith("data:")) {
-      return {
-        data: data.replace("data:", "").trim()
-      }
-    }
-    if (data.startsWith("event:")) {
-      return {
-        event: data.replace("event:", "").trim()
-      }
-    }
-    return {
-      data: ""
-    }
+  function onEvent(event: EventSourceMessage) {
+    console.log('Received event!')
+    console.log('id: %s', event.id || '<none>')
+    console.log('event: %s', event.event || '<none>')
+    console.log('data: %s', event.data)
+    // if (!event.event) {
+    setMessages((prev) => prev + event.data);
+    // }
   }
+
+  const parser = createParser({ onEvent })
 
   function fetchStream() {
 
@@ -35,7 +31,6 @@ function App() {
           throw new Error('No reader available');
         }
 
-        let msg = "";
         while (true) {
           const { value, done } = await reader.read();
           if (done) {
@@ -44,10 +39,7 @@ function App() {
           console.log(value);
           const data = new TextDecoder().decode(value);
           console.log(data);
-          const parsedData = parseData(data);
-          console.log(parsedData);
-          msg += parsedData?.data ?? "";
-          setMessages(msg);
+          parser.feed(data)
         }
 
       })

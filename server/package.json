@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/liruifengv/ai-chatbot-tutorial#readme",
   "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
     "@types/node": "^22.15.30"
   },
   "dependencies": {
