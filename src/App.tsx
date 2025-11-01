@@ -6,23 +6,59 @@ function App() {
 
   const [messages, setMessages] = useState<string>("");
 
-  function onEvent(event: EventSourceMessage) {
-    console.log('Received event!')
-    console.log('id: %s', event.id || '<none>')
-    console.log('event: %s', event.event || '<none>')
-    console.log('data: %s', event.data)
-    // if (!event.event) {
-    setMessages((prev) => prev + event.data);
-    // }
+  const onMessage = (message: EventSourceMessage) => {
+    try {
+      const res = JSON.parse(message.data);
+      console.log("res", res)
+      const { choices } = res;
+      if (!choices || choices.length === 0) {
+        return;
+      }
+      const { finish_reason: finishReason } = choices[0];
+      if (finishReason) {
+        console.log("finish_reason: ", finishReason)
+        return;
+      }
+
+      const { content = "" } = choices[0].delta;
+      console.log("content", content)
+      setMessages((prev) => prev + content);
+    } catch (err) {
+      if (message.data.trim() !== "[DONE]") {
+        console.error("err", err)
+      }
+    }
   }
 
-  const parser = createParser({ onEvent })
+  const parser = createParser({
+    onEvent: (event: EventSourceMessage) => {
+      console.log("event", event)
+      onMessage(event)
+    }
+  })
+
+  const API_KEY = import.meta.env.VITE_API_KEY
 
   function fetchStream() {
+    const url = "https://aihubmix.com/v1/chat/completions";
 
-    const url = "http://localhost:3000/events";
-
-    fetch(url)
+    fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: "gpt-4.1-mini",
+        messages: [
+          {
+             "role": "user",
+             "content": "你好，很高兴见到你"
+          }
+        ],
+        stream: true
+      }),
+    })
       .then(async response => {
         console.log(response);
         const reader = response?.body?.getReader();
@@ -36,9 +72,7 @@ function App() {
           if (done) {
             break;
           }
-          console.log(value);
           const data = new TextDecoder().decode(value);
-          console.log(data);
           parser.feed(data)
         }
 
@@ -47,11 +81,10 @@ function App() {
         console.error('Error:', error);
       });
   }
-
   return (
     <>
       <h1>AI 开发实战</h1>
-      <button id="start-button" onClick={fetchStream}>start</button>
+      <button id="start-button" onClick={fetchStream}>请求 openai-4.1-mini</button>
       <p className="content">
         {messages}
       </p>
