@@ -16,7 +16,7 @@
 - #### 第三课：接入 OpenAI API
   - [视频教程](https://www.youtube.com/watch?v=sUiDMUyhC6Q&t=1s)
   - [代码分支](https://github.com/liruifengv/ai-chatbot-tutorial/tree/p-3)
-- #### 第四课：实现联系对话 ChatBot
+- #### 第四课：实现连续对话 ChatBot
   - [视频教程](https://www.youtube.com/watch?v=859gjQd9R04&t=13s)
   - [代码分支](https://github.com/liruifengv/ai-chatbot-tutorial/tree/p-4)
 
